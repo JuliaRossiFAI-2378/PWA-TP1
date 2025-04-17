@@ -4,7 +4,7 @@ import Input from '../Input/Input';
 const Formulario = ({click}) => {
     let lista = localStorage.getItem("lista")
     
-    const [peliserie, setStore] = useState({
+    const [peliserie, setPeliserie] = useState({
         titulo: '',
         director: '',
         anio: '',
@@ -20,38 +20,39 @@ const Formulario = ({click}) => {
             lista = localStorage.getItem("lista")
             lista = JSON.parse(lista)
             lista = lista.concat(peliserie)
+            //console.log(lista)
             //localStorage.setItem("lista", lista)
         }
     }
     const change = (event) =>{
         switch(event.target.name){
             case 'titulo':
-                setStore({
+                setPeliserie({
                     ...peliserie, titulo: event.target.value
                 })
             break;
             case 'director':
-                setStore({
+                setPeliserie({
                     ...peliserie, director: event.target.value
                 })
             break;
             case 'anio':
-                setStore({
+                setPeliserie({
                     ...peliserie, anio: event.target.value
                 })
             break;
             case 'genero':
-                setStore({
+                setPeliserie({
                     ...peliserie, genero: event.target.value
                 })
             break;
             case 'rating':
-                setStore({
+                setPeliserie({
                     ...peliserie, rating: event.target.value
                 })
             break;
             case 'tipo':
-                setStore({
+                setPeliserie({
                     ...peliserie, tipo: event.target.value
                 })
             break;
