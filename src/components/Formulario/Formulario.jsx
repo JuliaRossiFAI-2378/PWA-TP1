@@ -2,91 +2,80 @@ import { useEffect, useState } from 'react'
 import Boton from '../Boton/Boton';
 import Input from '../Input/Input';
 const Formulario = ({click}) => {
-    let lista = localStorage.getItem("lista")
-    
-    const [peliserie, setPeliserie] = useState({
-        titulo: '',
-        director: '',
-        anio: '',
-        genero: 'comedia',
-        rating: '',
-        tipo: ''
-    })
+    let listaLS = localStorage.getItem("lista")
+    const [titulo, setTitulo] = useState("");
+    const [director, setDirector] = useState("");
+    const [anio, setAnio] = useState("");
+    const [genero, setGenero] = useState("");
+    const [rating, setRating] = useState("");
+    const [tipo, setTipo] = useState("");
+    const [imagen, setImagen] = useState("");
     const sendForm = () =>{
-        if(lista === null){
+        const peliserie = [{
+            titulo: titulo,
+            director: director,
+            anio: anio,
+            genero: genero,
+            rating: rating,
+            tipo: tipo,
+            imagen: imagen,
+            vista: false
+        }]
+        let lista = listaLS;
+        if(listaLS === null){
             lista = JSON.stringify(peliserie)
-            //localStorage.setItem("lista", lista)
+            localStorage.setItem("lista", lista)
         }else{
             lista = localStorage.getItem("lista")
             lista = JSON.parse(lista)
             lista = lista.concat(peliserie)
-            //console.log(lista)
-            //localStorage.setItem("lista", lista)
+            lista = JSON.stringify(lista)
+            localStorage.setItem("lista", lista)
         }
     }
-    const change = (event) =>{
+    const handleChange = (event) =>{
         switch(event.target.name){
-            case 'titulo':
-                setPeliserie({
-                    ...peliserie, titulo: event.target.value
-                })
-            break;
-            case 'director':
-                setPeliserie({
-                    ...peliserie, director: event.target.value
-                })
-            break;
-            case 'anio':
-                setPeliserie({
-                    ...peliserie, anio: event.target.value
-                })
-            break;
             case 'genero':
-                setPeliserie({
-                    ...peliserie, genero: event.target.value
-                })
-            break;
-            case 'rating':
-                setPeliserie({
-                    ...peliserie, rating: event.target.value
-                })
+                setGenero(event.target.value)
             break;
             case 'tipo':
-                setPeliserie({
-                    ...peliserie, tipo: event.target.value
-                })
+                setTipo(event.target.value)
             break;
         }
     }
-    
     return (
         <div className="card">
-        <form>
-            <label htmlFor="titulo">Titulo: </label>
-            <input type="text" onChange={change} name="titulo" id="titulo" required/> <br/>
-            <label htmlFor="director">Director: </label>
-            <input type="text" onChange={change} name="director" id="director" required/> <br/>
-            <label htmlFor="anio">A&ntilde;o: </label>
-            <input type="number" onChange={change} name="anio" id="anio" required/><br/>
-            <label htmlFor="genero">Genero: </label>
-            <select onChange={change} name='genero'>
-                <option value="comedia">Comedia</option>
-                <option value="accion">Accion</option>
-                <option value="aventura">Aventura</option>
-                <option value="fantasia">Fantasia</option>
-                <option value="suspenso">Suspenso</option>
-                <option value="animacion">Animacion</option>
-            </select><br/>
-            <label htmlFor="rating">Rating: </label>
-            <input type="number" onChange={change} name="rating" id="rating" /><br/>
-            <input type="radio" onChange={change} name="tipo" value="pelicula"/>
-            <label htmlFor="pelicula">Pelicula</label><br/>
-            <input type="radio" onChange={change} name="tipo" value="serie" />
-            <label htmlFor="serie">Serie</label><br/>
-            <Boton onClick={sendForm}/>
-            <Boton texto="volver atras" onClick={click}/>
-        </form>    
+            <form>
+                <label>Titulo: </label>
+                <Input onChange={setTitulo} value={titulo} /> <br/>
+                <label>Director: </label>
+                <Input onChange={setDirector} value={director} /> <br/>
+                <label>A&ntilde;o: </label>
+                <Input onChange={setAnio} value={anio} /><br/>
+                <label>Genero: </label>
+                <select onChange={handleChange} name='genero'>
+                    <option value="comedia">Comedia</option>
+                    <option value="accion">Accion</option>
+                    <option value="aventura">Aventura</option>
+                    <option value="fantasia">Fantasia</option>
+                    <option value="suspenso">Suspenso</option>
+                    <option value="animacion">Animacion</option>
+                </select><br/>
+                <label>Rating: </label>
+                <Input onChange={setRating} value={rating} /><br/>
+                <input type="radio" onChange={handleChange} name="tipo" value="pelicula"/>
+                <label>Pelicula</label><br/>
+                <input type="radio" onChange={handleChange} name="tipo" value="serie" />
+                <label>Serie</label><br/>
+                <label>Url de la imagen: </label>
+                <Input onChange={setImagen} value={imagen} />
+                <Boton texto="Guardar peliserie" onClick={sendForm} type="submit"/>
+                <Boton texto="Volver atras" onClick={click}/>
+            </form>
       </div>
     )
 }
 export default Formulario;
+
+
+
