@@ -1,8 +1,8 @@
-const Boton = ({texto, onClick, type}) => {
+import styles from '../Tarjeta/tarjeton.module.css'
+
+const Boton = ({texto, onClick, estilo, type=null}) => {// estilo se escribe como styles. y el nombre del estilo
     return (
-        <div>
-            <button type={type} onClick={onClick}>{texto}</button>
-        </div>
+            <button type={type} className={estilo} onClick={onClick}>{texto}</button>
     )
 }
 

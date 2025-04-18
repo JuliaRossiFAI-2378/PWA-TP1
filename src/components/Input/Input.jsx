@@ -1,3 +1,5 @@
+import styles from './Input.module.css'
+
 const Input  = ({onChange, value, estilo, lectura=false}) => {//tenemos un callback como parametro
 
     const handleChange = (evento) => {//campo de input siendo modificado
