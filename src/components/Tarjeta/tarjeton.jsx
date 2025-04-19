@@ -7,12 +7,11 @@ import Generos from './Generos/Generos.jsx'
 import Imagenes from './Imagenes/Imagenes.jsx'
 import Boton from '../Boton/Boton.jsx'
 
-function Tarjeta() {
-
+const Tarjeta = (peliserie) => {
 
 //aca se puede generar clave para la tarjeta si necesitamos
 //todavia me falta que esto salga de localstorage
-const [datosCard, setDatosCard] = useState({titulo: "Super Serie", director: "John Movies", anio: "2999", genero:"Terror", rating:"kino", tipo:"serie", imagen: "https://pics.filmaffinity.com/crash-638625165-large.jpg", vista: false})
+const [datosCard, setDatosCard] = useState(peliserie.peliserie)
 //setDatosCard(localstorage.leertarjeta) pa guardar datos
 
 

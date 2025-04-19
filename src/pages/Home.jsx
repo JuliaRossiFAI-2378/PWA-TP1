@@ -1,7 +1,8 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Boton from '../components/Boton/Boton'
 import Titulo from '../components/Titulo/Titulo'
 import Formulario from '../components/Formulario/Formulario'
+import Tarjeta from '../components/Tarjeta/tarjeton'
 
 const Home = () => {
     //vistas, no vistas?, formulario
@@ -13,6 +14,9 @@ const Home = () => {
         ;
     }
     
+    
+    let storage = localStorage.getItem("lista");
+    storage = JSON.parse(storage)
     if(pagina === "formulario"){
         return (
             <div>
@@ -23,7 +27,10 @@ const Home = () => {
         return(
             <div>
                 <Titulo titulo="TP1 PWA" />
-                <Boton texto="Cargar Pelicula" onClick={mostrarFormulario}/>     
+                <Boton texto="Cargar Pelicula" onClick={mostrarFormulario}/>    
+                {!(storage === null) ? storage.map((peli, index) => (
+                    <Tarjeta peliserie={peli} key={index}/>
+                )) : <p>No ha subido ninguna peliserie</p>} 
             </div>
         )
     }
