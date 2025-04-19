@@ -4,27 +4,26 @@ import Titulo from '../components/Titulo/Titulo'
 import Formulario from '../components/Formulario/Formulario'
 
 const Home = () => {
-    
-    const [wasClicked, setWasClicked] = useState(false);
-    const changeClick = () => {
-        if(!wasClicked){
-            setWasClicked(true);
-        }else{
-            setWasClicked(false);
-        }
+    //vistas, no vistas?, formulario
+    //necesitamos una pagina para no vistas o seria parte de la logica del filtro?
+    const [pagina, setPagina] = useState("vistas");
+    const mostrarFormulario = () => {
+        pagina === "vistas" ?  setPagina("formulario")
+        : setPagina("vistas")
+        ;
     }
     
-    if(wasClicked){
+    if(pagina === "formulario"){
         return (
             <div>
-                <Formulario click={changeClick}/>
+                <Formulario click={mostrarFormulario}/>
             </div>
         )
-    }else{
+    }else if(pagina === "vistas"){
         return(
             <div>
                 <Titulo titulo="TP1 PWA" />
-                <Boton texto="Cargar Pelicula" onClick={changeClick}/>     
+                <Boton texto="Cargar Pelicula" onClick={mostrarFormulario}/>     
             </div>
         )
     }
