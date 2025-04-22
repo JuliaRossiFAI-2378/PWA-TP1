@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react';
-import Boton from '../components/Boton/Boton';
-import Titulo from '../components/Titulo/Titulo';
-import Formulario from '../components/Formulario/Formulario';
-import Tarjeta from '../components/Tarjeta/tarjeton';
-import Busqueda from '../components/Busqueda/Busqueda';
-import Contador from '../components/Contador/Contador';
-import Filtros from '../components/Filtros/Filtros';
-import Ordenamiento from '../components/Ordenamiento/Ordenamiento';
+import Boton from '../../components/Boton/Boton';
+import Titulo from '../../components/Titulo/Titulo';
+import Formulario from '../../components/Formulario/Formulario';
+import Tarjeta from '../../components/Tarjeta/tarjeton';
+import Busqueda from '../../components/Busqueda/Busqueda';
+import Contador from '../../components/Contador/Contador';
+import Filtros from '../../components/Filtros/Filtros';
+import Ordenamiento from '../../components/Ordenamiento/Ordenamiento';
 
 const Home = () => {
     const [pagina, setPagina] = useState("vistas");
