@@ -1,6 +1,8 @@
 import { useState } from 'react';
 import styles from './tarjeton.module.css';
 import Boton from '../Boton/Boton';
+import Imagenes from './Imagenes/Imagenes.jsx';
+import InfoCard from './InfoCard/InfoCard.jsx';
 
 const Tarjeta = ({ peliserie, onToggleVista, onEliminar, onGuardarEdicion, esVista }) => {
     const [tipoCard, setTipoCard] = useState("view");
@@ -53,29 +55,27 @@ const Tarjeta = ({ peliserie, onToggleVista, onEliminar, onGuardarEdicion, esVis
         }));
     };
 
+    const Confirmacion = () =>
+        tipoCard==="confirm" ?
+        <div>
+            <div className={styles.confirmCard}>
+                <h3>¿Eliminar {peliserie.titulo}?</h3>
+                <button className={styles.eliminar} onClick={HandleClickConfirm}>
+                    Confirmar
+                </button>
+                <button onClick={HandleClickCancelar}>
+                    Cancelar
+                </button>
+            </div>
+            <img className={styles.mascara} src="./src/assets/mascara.png" onClick={HandleClickCancelar}></img>
+        </div>
+        : null
+        ;
+
+
     return (
         <div className={styles.tarjeta}>
-            {tipoCard === "confirm" && (
-                <div className={styles.confirm}>
-                    <div className={styles.confirmCard}>
-                        <h3>¿Eliminar {peliserie.titulo}?</h3>
-                        <button 
-                            className={styles.eliminar} 
-                            onClick={HandleClickConfirm}
-                        >
-                            Confirmar
-                        </button>
-                        <button onClick={HandleClickCancelar}>
-                            Cancelar
-                        </button>
-                    </div>
-                    <div 
-                        className={styles.mascara} 
-                        onClick={HandleClickCancelar}
-                    ></div>
-                </div>
-            )}
-            
+            <Confirmacion/>
             <div className={styles.imagenContainer}>
                 {peliserie.imagen && (
                     <img 
@@ -98,7 +98,7 @@ const Tarjeta = ({ peliserie, onToggleVista, onEliminar, onGuardarEdicion, esVis
                     </div>
                 )}
             </div>
-            
+
             <div className={styles.texto}>
                 <div className={styles.areaTitulo}>
                     {tipoCard === "view" ? (

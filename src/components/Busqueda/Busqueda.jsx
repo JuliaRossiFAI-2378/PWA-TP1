@@ -18,7 +18,6 @@ const Busqueda = ({ terminoBusqueda, setTerminoBusqueda, criterio, setCriterio }
                         fontSize: '16px'
                     }}
                 />
-                //Select o checkbox???
                 <select
                     value={criterio}
                     onChange={(e) => setCriterio(e.target.value)}

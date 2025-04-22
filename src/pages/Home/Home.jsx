@@ -130,7 +130,7 @@ const Home = () => {
     }
 
     return (
-        <div style={{ padding: '20px', maxWidth: '1200px', margin: '0 auto' }}>
+        <div className="contenido">
             <Titulo titulo="TP1 PWA" />
             
             {/* Controles superiores */}
