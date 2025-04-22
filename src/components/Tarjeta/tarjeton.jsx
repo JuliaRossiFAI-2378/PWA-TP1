@@ -1,124 +1,243 @@
-import { useState } from 'react'
-import styles from './tarjeton.module.css'
-import Input from '../Input/Input.jsx'
-import TituloCard from './TituloCard/TituloCard.jsx'
-import InfoCard from './InfoCard/InfoCard.jsx'
-import Generos from './Generos/Generos.jsx'
-import Imagenes from './Imagenes/Imagenes.jsx'
-import Boton from '../Boton/Boton.jsx'
+import { useState } from 'react';
+import styles from './tarjeton.module.css';
+import Boton from '../Boton/Boton';
 
-const Tarjeta = (peliserie) => {
+const Tarjeta = ({ peliserie, onToggleVista, onEliminar, onGuardarEdicion, esVista }) => {
+    const [tipoCard, setTipoCard] = useState("view");
+    const [iconoEstado, setIconoEstado] = useState(esVista ? "vista" : "no-vista");
+    const [datosEditados, setDatosEditados] = useState({...peliserie});
 
-//aca se puede generar clave para la tarjeta si necesitamos
-//todavia me falta que esto salga de localstorage
-const [datosCard, setDatosCard] = useState(peliserie.peliserie)
-//setDatosCard(localstorage.leertarjeta) pa guardar datos
+    const generosDisponibles = ["terror", "drama", "fantasia", "accion", "romance", "documental"];
 
+    const manejarClickVista = () => {
+        const nuevoEstado = iconoEstado === "vista" ? "no-vista" : "vista";
+        setIconoEstado(nuevoEstado);
+        onToggleVista();
+    };
 
-// ./src/assets/notseen.png-  ./src/assets/seen.png-  ./src/assets/hovernotseen.png-  ./src/assets/hoverseen.png-  ./src/assets/edit.png
-const [estadoImg, setEstadoImg] = useState(datosCard.vista ? "./src/assets/seen.png" : "./src/assets/notseen.png");
+    const obtenerImagenEstado = () => {
+        switch(iconoEstado) {
+            case "vista": return "./src/assets/seen.png";
+            case "no-vista": return "./src/assets/notseen.png";
+            default: return "./src/assets/notseen.png";
+        }
+    };
 
-const imgClickHandler = () =>
-  estadoImg === "./src/assets/hoverseen.png" ? setEstadoImg("./src/assets/notseen.png") :
-  estadoImg === "./src/assets/hovernotseen.png" ? setEstadoImg("./src/assets/seen.png") :
-  ""
-;
+    const HandleClickEditar = () => {
+        setTipoCard("edit");
+    };
 
-const imgHoverHandler = ({tipo}) =>{
-  if(tipoCard==="edit" && tipo==="entra"){
-    setEstadoImg("./src/assets/edit.png")
-  }else{
-    if(tipo==="entra"){
-      switch(estadoImg){
-        case "./src/assets/seen.png":
-          setEstadoImg("./src/assets/hoverseen.png")
-          break;
-        case "./src/assets/notseen.png":
-          setEstadoImg("./src/assets/hovernotseen.png")
-          break;
-      }
-    }else if(tipo==="sale"){
-      switch(estadoImg){
-        case "./src/assets/hoverseen.png":
-          setEstadoImg("./src/assets/seen.png")
-          break;
-        case "./src/assets/hovernotseen.png":
-          setEstadoImg("./src/assets/notseen.png")
-          break;
-        case "./src/assets/edit.png":
-          setEstadoImg("./src/assets/notseen.png")
-          break;
-      }
-    }
-  }
-}
+    const HandleClickCancelar = () => {
+        setDatosEditados({...peliserie});
+        setTipoCard("view");
+    };
 
+    const HandleClickGuardar = () => {
+        onGuardarEdicion(datosEditados);
+        setTipoCard("view");
+    };
 
-const imgEditClickHandler = () => "";//un poco de logica faltante :)
+    const HandleClickEliminar = () => {
+        setTipoCard("confirm");
+    };
 
-const [tipoCard, setTipoCard] = useState("view"); //view/edit/confirm
+    const HandleClickConfirm = () => {
+        onEliminar();
+        setTipoCard("view");
+    };
 
-const HandleClickEditar = () => setTipoCard("edit");
+    const handleChange = (campo, valor) => {
+        setDatosEditados(prev => ({
+            ...prev,
+            [campo]: valor
+        }));
+    };
 
-const HandleClickGuardar = () => {
-  // var datos = {titulo: refTitulo.current.textContent, info: [refDir.current.textContent, refAnio.current.textContent, refRating.current.textContent, refTipo.current.textContent], genero: refGenero.current.value, img: datosCard.img}
-  //toda la logica cochina de cambiar la imagen ;-;
-  // setDatosCard(datos);
-  //falta guardar datos de estado en el json
-  setTipoCard("view")}
-;
-
-  //este tiene que forzar una recarga creo
-  const HandleClickCancelar = () => setTipoCard("view");
-
-  const HandleClickEliminar = () => setTipoCard("confirm");
-
-  const HandleClickConfirm = () => setTipoCard("view");
-
-  const BotonesCard = () =>
-    tipoCard==="edit" ?
-    <div className={styles.botones}>
-      <Boton texto={"Cancelar"} onClick={HandleClickCancelar} estilo={styles.editar}/>
-      
-      <Boton texto={"Guardar"} onClick={HandleClickGuardar} estilo={styles.editar}/>
-    </div>
-    :
-    <div className={styles.botones}>
-      <Boton texto={"Editar"} onClick={HandleClickEditar} estilo={styles.editar}/>
-      <Boton texto={"Eliminar"} onClick={HandleClickEliminar} estilo={styles.eliminar}/>
-    </div>
-  ;
-
-  const Confirmacion = () => //falta recibir y eliminar datos
-    tipoCard==="confirm" ? 
-    <div className={styles.confirm}>
-      <div className={styles.confirmCard}>
-        <h3>Desea eliminar *insertar nombre aca*</h3>
-        <button className={styles.eliminar}>Confirmar</button>
-        <button onClick={HandleClickConfirm}>Cancelar</button>
-      </div>
-      <img className={styles.mascara} src="./src/assets/mascara.png" onClick={HandleClickConfirm}></img>
-    </div>
-    : null
-  ;
-
-  return (
-    //cada tarjeta necesita su propia clave, esto lo hacemos aca o en el home?
-    <div className={styles.tarjeta}>
-      <Confirmacion/>
-        <Imagenes datos={datosCard.imagen} estadoImg={estadoImg} clickHandler={imgClickHandler} hoverHandler={imgHoverHandler} />
-        <div className={styles.texto}>
-          <div className={styles.areaTitulo}>
-            <TituloCard titulo={datosCard.titulo} estado={tipoCard}  />
-          </div>
-          <div className={styles.cuerpoTexto}>
-            <InfoCard datos={datosCard} estado={tipoCard}/>
-            <Generos estado={tipoCard} genero={datosCard.genero}/>
-            <BotonesCard/>
-          </div>
+    return (
+        <div className={styles.tarjeta}>
+            {tipoCard === "confirm" && (
+                <div className={styles.confirm}>
+                    <div className={styles.confirmCard}>
+                        <h3>¿Eliminar {peliserie.titulo}?</h3>
+                        <button 
+                            className={styles.eliminar} 
+                            onClick={HandleClickConfirm}
+                        >
+                            Confirmar
+                        </button>
+                        <button onClick={HandleClickCancelar}>
+                            Cancelar
+                        </button>
+                    </div>
+                    <div 
+                        className={styles.mascara} 
+                        onClick={HandleClickCancelar}
+                    ></div>
+                </div>
+            )}
+            
+            <div className={styles.imagenContainer}>
+                {peliserie.imagen && (
+                    <img 
+                        src={peliserie.imagen} 
+                        alt={peliserie.titulo}
+                        className={styles.imagenPelicula}
+                        onError={(e) => {
+                            e.target.src = './src/assets/default-movie.png';
+                        }}
+                    />
+                )}
+                
+                {tipoCard === "view" && (
+                    <div 
+                        className={styles.iconoVista}
+                        onClick={manejarClickVista}
+                        title={iconoEstado === "vista" ? "Marcar como no vista" : "Marcar como vista"}
+                    >
+                        <img src={obtenerImagenEstado()} alt="Estado de visualización" />
+                    </div>
+                )}
+            </div>
+            
+            <div className={styles.texto}>
+                <div className={styles.areaTitulo}>
+                    {tipoCard === "view" ? (
+                        <h3 className={styles.tituloPelicula}>{peliserie.titulo}</h3>
+                    ) : (
+                        <input
+                            type="text"
+                            value={datosEditados.titulo}
+                            onChange={(e) => handleChange('titulo', e.target.value)}
+                            className={styles.inputEdicion}
+                            placeholder="Título"
+                        />
+                    )}
+                </div>
+                
+                <div className={styles.cuerpoTexto}>
+                    {/* Director */}
+                    <div className={styles.campo}>
+                        <span className={styles.etiqueta}>Director:</span>
+                        {tipoCard === "view" ? (
+                            <span className={styles.valor}>{peliserie.director}</span>
+                        ) : (
+                            <input
+                                type="text"
+                                value={datosEditados.director}
+                                onChange={(e) => handleChange('director', e.target.value)}
+                                className={styles.inputEdicion}
+                                placeholder="Director"
+                            />
+                        )}
+                    </div>
+                    
+                    {/* Año */}
+                    <div className={styles.campo}>
+                        <span className={styles.etiqueta}>Año:</span>
+                        {tipoCard === "view" ? (
+                            <span className={styles.valor}>{peliserie.anio}</span>
+                        ) : (
+                            <input
+                                type="number"
+                                value={datosEditados.anio}
+                                onChange={(e) => handleChange('anio', e.target.value)}
+                                className={styles.inputEdicion}
+                                placeholder="Año"
+                            />
+                        )}
+                    </div>
+                    
+                    {/* Género */}
+                    <div className={styles.campo}>
+                        <span className={styles.etiqueta}>Género:</span>
+                        {tipoCard === "view" ? (
+                            <span className={styles.valor}>
+                                {peliserie.genero.charAt(0).toUpperCase() + peliserie.genero.slice(1)}
+                            </span>
+                        ) : (
+                            <select
+                                value={datosEditados.genero}
+                                onChange={(e) => handleChange('genero', e.target.value)}
+                                className={styles.selectEdicion}
+                            >
+                                {generosDisponibles.map(genero => (
+                                    <option key={genero} value={genero}>
+                                        {genero.charAt(0).toUpperCase() + genero.slice(1)}
+                                    </option>
+                                ))}
+                            </select>
+                        )}
+                    </div>
+                    
+                    {/* Rating */}
+                    <div className={styles.campo}>
+                        <span className={styles.etiqueta}>Rating:</span>
+                        {tipoCard === "view" ? (
+                            <span className={styles.valor}>{peliserie.rating}/10</span>
+                        ) : (
+                            <input
+                                type="number"
+                                min="1"
+                                max="10"
+                                value={datosEditados.rating}
+                                onChange={(e) => handleChange('rating', e.target.value)}
+                                className={styles.inputEdicion}
+                                placeholder="1-10"
+                            />
+                        )}
+                    </div>
+                    
+                    {/* Tipo */}
+                    <div className={styles.campo}>
+                        <span className={styles.etiqueta}>Tipo:</span>
+                        {tipoCard === "view" ? (
+                            <span className={styles.valor}>
+                                {peliserie.tipo === 'pelicula' ? 'Película' : 'Serie'}
+                            </span>
+                        ) : (
+                            <div className={styles.radioGroup}>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="tipo"
+                                        value="pelicula"
+                                        checked={datosEditados.tipo === "pelicula"}
+                                        onChange={() => handleChange('tipo', 'pelicula')}
+                                    />
+                                    Película
+                                </label>
+                                <label>
+                                    <input
+                                        type="radio"
+                                        name="tipo"
+                                        value="serie"
+                                        checked={datosEditados.tipo === "serie"}
+                                        onChange={() => handleChange('tipo', 'serie')}
+                                    />
+                                    Serie
+                                </label>
+                            </div>
+                        )}
+                    </div>
+                    
+                    {/* Botones */}
+                    <div className={styles.botones}>
+                        {tipoCard === "edit" ? (
+                            <>
+                                <Boton texto="Cancelar" onClick={HandleClickCancelar} />
+                                <Boton texto="Guardar" onClick={HandleClickGuardar} />
+                            </>
+                        ) : (
+                            <>
+                                <Boton texto="Editar" onClick={HandleClickEditar} />
+                                <Boton texto="Eliminar" onClick={HandleClickEliminar} />
+                            </>
+                        )}
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-  )
-}
+    );
+};
 
-export default Tarjeta
+export default Tarjeta;

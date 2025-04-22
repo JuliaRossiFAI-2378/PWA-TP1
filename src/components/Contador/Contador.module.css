@@ -1,0 +1,76 @@
+.contadorContainer {
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    padding: 15px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.titulo {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 0 10px 0;
+    color: #333;
+}
+
+.total {
+    background-color: #6200ea;
+    color: white;
+    padding: 3px 10px;
+    border-radius: 20px;
+    font-size: 0.9em;
+}
+
+.resumen {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #eee;
+}
+
+.resumen span {
+    background-color: #e9ecef;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 0.9em;
+}
+
+.generosContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.generoItem {
+    background-color: white;
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.generoNombre {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    color: #495057;
+}
+
+.detalleTipo {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.detalleTipo span {
+    background-color: #f1f3f5;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-size: 0.85em;
+}
+
+.generoCantidad {
+    background-color: #e6f7ff !important;
+    color: #087ea4;
+}

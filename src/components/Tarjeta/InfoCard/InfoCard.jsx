@@ -1,15 +1,35 @@
-import Input from '../../Input/Input.jsx'
-import Info from './Info.jsx'
+const InfoCard = ({ datos, modoEdicion, onChange }) => {
+  return (
+      <div className="info-card">
+          {modoEdicion ? (
+              <>
+                  <div className="info-group">
+                      <label>Director:</label>
+                      <input
+                          type="text"
+                          value={datos.director}
+                          onChange={(e) => onChange('director', e.target.value)}
+                      />
+                  </div>
+                  <div className="info-group">
+                      <label>Año:</label>
+                      <input
+                          type="number"
+                          value={datos.anio}
+                          onChange={(e) => onChange('anio', e.target.value)}
+                      />
+                  </div>
+                  {}
+              </>
+          ) : (
+              <>
+                  <p>Director: {datos.director}</p>
+                  <p>Año: {datos.anio}</p>
+                 
+              </>
+          )}
+      </div>
+  );
+};
 
-
-const InfoCard = ({datos, estado}) => {
-    
-  return (<div>
-    <Info datos={datos.director} estadoCard={estado} texto={"Director"}/>
-    <Info datos={datos.anio} estadoCard={estado} texto={"Año"}/>
-    <Info datos={datos.rating} estadoCard={estado} texto={"Rating"}/>
-    <Info datos={datos.tipo} estadoCard={estado} texto={"Tipo"}/>
-    </div>
-  )
-} 
-export default InfoCard
+export default InfoCard;

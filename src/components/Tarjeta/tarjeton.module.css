@@ -1,104 +1,162 @@
 .tarjeta {
-    display: flex;
-    align-items: flex-start;
-    border:2px solid grey;
-    border-radius: 5px;
-    text-align: left;
+    position: relative;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    transition: transform 0.2s;
 }
 
-.cuerpoTexto{
-    margin-left:15px;
+.tarjeta:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
 }
 
-.inputEscondido{ /*esto va arriba para que se ejecute antes del estilizado*/
-    all:unset
+.imagenContainer {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    overflow: hidden;
 }
 
-.titulo{
-    font-weight: bold;
-    font-size: 1.5em;
-    text-align: center;
-    display: block;
-    color: black;
-    padding-bottom: 0.2em;
-}
-.areaTitulo{
-    background-color: grey;
+.imagenPelicula {
     width: 100%;
     height: 100%;
-    margin: 0px;
+    object-fit: cover;
 }
 
-.imagen {
-    width: 20em;
-    height: 20em;
+.iconoVista {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    background: rgba(0,0,0,0.7);
+    padding: 5px;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.iconoVista:hover {
+    transform: scale(1.1);
+}
+
+.iconoVista img {
+    width: 24px;
+    height: 24px;
+}
+
+.texto {
+    padding: 15px;
+}
+
+.areaTitulo {
+    margin-bottom: 10px;
+}
+
+.tituloPelicula {
     margin: 0;
+    color: #333;
+    font-size: 1.2rem;
+}
+
+.cuerpoTexto {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.campo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.etiqueta {
+    font-weight: bold;
+    min-width: 60px;
+    color: #555;
+}
+
+.valor {
+    flex: 1;
+}
+
+.inputEdicion {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.selectEdicion {
+    flex: 1;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: white;
+}
+
+.radioGroup {
+    display: flex;
+    gap: 15px;
+}
+
+.radioGroup label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.botones {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 15px;
+    gap: 10px;
+}
+
+.confirm {
     position: absolute;
     top: 0;
     left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+    background-color: rgba(0,0,0,0.5);
 }
 
-
-.imagenes{
-    overflow: hidden;
-    position: relative;
-    margin: 0 auto;
-    display: block;
-    width: 20em;
-    height: 20em;
-    background-color: transparent;
-}
-
-.tarjeta p{
-    margin-top:0em;
-    margin-bottom: 0em;
-}
-
-.info{
-    font-size: 1em;
-    line-height: 1.5;
-}
-
-.generos{
-    padding: 0.5em;
-    margin-top: 0.5em;
-    margin-bottom: 0.5em;
-    text-align: left;
-    width: 95%;
-    font-weight: bold;
-}
-
-.botones{
+.confirmCard {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
     text-align: center;
+    z-index: 11;
 }
 
-.eliminar{
-    background-color: darkred;
-    margin-left: 0.3em;
-    margin-right: 0.3em;
+.confirmCard h3 {
+    margin-top: 0;
 }
 
-.mascara{
-    height: 100vh;
-    width: 100vw;
-    position: fixed;
-    top:0;
+.confirmCard button {
+    margin: 0 5px;
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.eliminar {
+    background-color: #ff4444;
+    color: white;
+}
+
+.mascara {
+    position: absolute;
+    top: 0;
     left: 0;
-    z-index: 1;
-}
-
-.confirmCard{
-    position:fixed;
-    top:50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 2;
-    border:2px solid white;
-    border-radius: 5px;
-    text-align: center;
-    background-color:rgb(83, 44, 100) ;
-}
-
-.eliminar{
-    
+    right: 0;
+    bottom: 0;
 }

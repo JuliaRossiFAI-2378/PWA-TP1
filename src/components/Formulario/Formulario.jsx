@@ -1,81 +1,219 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react';
 import Boton from '../Boton/Boton';
-import Input from '../Input/Input';
-const Formulario = ({click}) => {
-    let listaLS = localStorage.getItem("lista")
-    const [titulo, setTitulo] = useState("");
-    const [director, setDirector] = useState("");
-    const [anio, setAnio] = useState("");
-    const [genero, setGenero] = useState("");
-    const [rating, setRating] = useState("");
-    const [tipo, setTipo] = useState("");
-    const [imagen, setImagen] = useState("");
-    const sendForm = () =>{
-        const peliserie = [{
-            titulo: titulo,
-            director: director,
-            anio: anio,
-            genero: genero,
-            rating: rating,
-            tipo: tipo,
-            imagen: imagen,
+
+const Formulario = ({ click }) => {
+    const [formData, setFormData] = useState({
+        titulo: "",
+        director: "",
+        anio: "",
+        genero: "terror",
+        rating: "",
+        tipo: "pelicula",
+        imagen: ""
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        
+        if (!formData.titulo || !formData.director) {
+            alert("Por favor complete título y director");
+            return;
+        }
+
+        const listaActual = JSON.parse(localStorage.getItem("lista") || "[]");
+        const nuevaPelicula = {
+            ...formData,
+            id: Date.now(),
             vista: false
-        }]
-        let lista = listaLS;
-        if(listaLS === null){
-            lista = JSON.stringify(peliserie)
-            localStorage.setItem("lista", lista)
-        }else{
-            lista = localStorage.getItem("lista")
-            lista = JSON.parse(lista)
-            lista = lista.concat(peliserie)
-            lista = JSON.stringify(lista)
-            localStorage.setItem("lista", lista)
-        }
-    }
-    const handleChange = (event) =>{
-        switch(event.target.name){
-            case 'genero':
-                setGenero(event.target.value)
-            break;
-            case 'tipo':
-                setTipo(event.target.value)
-            break;
-        }
-    }
+        };
+
+        localStorage.setItem("lista", JSON.stringify([...listaActual, nuevaPelicula]));
+        click();
+    };
+
     return (
-        <div className="card">
-            <form>
-                <label>Titulo: </label>
-                <Input onChange={setTitulo} value={titulo} /> <br/>
-                <label>Director: </label>
-                <Input onChange={setDirector} value={director} /> <br/>
-                <label>A&ntilde;o: </label>
-                <Input onChange={setAnio} value={anio} /><br/>
-                <label>Genero: </label>
-                <select onChange={handleChange} name='genero'>
-                    <option value="comedia">Comedia</option>
-                    <option value="accion">Accion</option>
-                    <option value="aventura">Aventura</option>
-                    <option value="fantasia">Fantasia</option>
-                    <option value="suspenso">Suspenso</option>
-                    <option value="animacion">Animacion</option>
-                </select><br/>
-                <label>Rating: </label>
-                <Input onChange={setRating} value={rating} /><br/>
-                <input type="radio" onChange={handleChange} name="tipo" value="pelicula"/>
-                <label>Pelicula</label><br/>
-                <input type="radio" onChange={handleChange} name="tipo" value="serie" />
-                <label>Serie</label><br/>
-                <label>Url de la imagen: </label>
-                <Input onChange={setImagen} value={imagen} />
-                <Boton texto="Guardar peliserie" onClick={sendForm} type="submit"/>
-                <Boton texto="Volver atras" onClick={click}/>
+        <div style={{
+            maxWidth: '500px',
+            margin: '20px auto',
+            padding: '20px',
+            backgroundColor: '#f9f9f9',
+            borderRadius: '8px',
+            boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+        }}>
+            <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Agregar Película/Serie</h2>
+            
+            <form onSubmit={handleSubmit}>
+                {}
+                <div style={{ marginBottom: '15px' }}>
+                    <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>Título:</label>
+                    <input
+                        name="titulo"
+                        type="text"
+                        value={formData.titulo}
+                        onChange={handleChange}
+                        required
+                        style={{
+                            width: '100%',
+                            padding: '8px',
+                            borderRadius: '4px',
+                            border: '1px solid #ddd'
+                        }}
+                    />
+                </div>
+
+                {}
+                <div style={{ marginBottom: '15px' }}>
+                    <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>Director:</label>
+                    <input
+                        name="director"
+                        type="text"
+                        value={formData.director}
+                        onChange={handleChange}
+                        required
+                        style={{
+                            width: '100%',
+                            padding: '8px',
+                            borderRadius: '4px',
+                            border: '1px solid #ddd'
+                        }}
+                    />
+                </div>
+
+                {}
+                <div style={{ marginBottom: '15px' }}>
+                    <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>Año:</label>
+                    <input
+                        name="anio"
+                        type="number"
+                        value={formData.anio}
+                        onChange={handleChange}
+                        style={{
+                            width: '100%',
+                            padding: '8px',
+                            borderRadius: '4px',
+                            border: '1px solid #ddd'
+                        }}
+                    />
+                </div>
+
+                {}
+                <div style={{ marginBottom: '15px' }}>
+                    <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>Género:</label>
+                    <select
+                        name="genero"
+                        value={formData.genero}
+                        onChange={handleChange}
+                        style={{
+                            width: '100%',
+                            padding: '8px',
+                            borderRadius: '4px',
+                            border: '1px solid #ddd'
+                        }}
+                    >
+                        <option value="terror">Terror</option>
+                        <option value="drama">Drama</option>
+                        <option value="fantasia">Fantasía</option>
+                        <option value="accion">Acción</option>
+                        <option value="romance">Romance</option>
+                        <option value="documental">Documental</option>
+                    </select>
+                </div>
+
+                {}
+                <div style={{ marginBottom: '15px' }}>
+                    <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>Rating (1-10):</label>
+                    <input
+                        name="rating"
+                        type="number"
+                        min="1"
+                        max="10"
+                        value={formData.rating}
+                        onChange={handleChange}
+                        style={{
+                            width: '100%',
+                            padding: '8px',
+                            borderRadius: '4px',
+                            border: '1px solid #ddd'
+                        }}
+                    />
+                </div>
+
+                {}
+                <div style={{ marginBottom: '15px' }}>
+                    <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>Tipo:</label>
+                    <div style={{ display: 'flex', gap: '15px' }}>
+                        <label>
+                            <input
+                                type="radio"
+                                name="tipo"
+                                value="pelicula"
+                                checked={formData.tipo === "pelicula"}
+                                onChange={handleChange}
+                            /> Película
+                        </label>
+                        <label>
+                            <input
+                                type="radio"
+                                name="tipo"
+                                value="serie"
+                                checked={formData.tipo === "serie"}
+                                onChange={handleChange}
+                            /> Serie
+                        </label>
+                    </div>
+                </div>
+
+                {}
+                <div style={{ marginBottom: '20px' }}>
+                    <label style={{ display: 'block', marginBottom: '5px', fontWeight: 'bold' }}>URL de la imagen:</label>
+                    <input
+                        name="imagen"
+                        type="url"
+                        value={formData.imagen}
+                        onChange={handleChange}
+                        placeholder="https://ejemplo.com/imagen.jpg"
+                        style={{
+                            width: '100%',
+                            padding: '8px',
+                            borderRadius: '4px',
+                            border: '1px solid #ddd'
+                        }}
+                    />
+                </div>
+
+                {}
+                <div style={{ display: 'flex', justifyContent: 'space-between', gap: '10px' }}>
+                    <Boton
+                        texto="Guardar"
+                        type="submit"
+                        estilo={{
+                            padding: '10px 20px',
+                            backgroundColor: '#4CAF50',
+                            color: 'white'
+                        }}
+                    />
+                    <Boton
+                        texto="Cancelar"
+                        type="button"
+                        onClick={click}
+                        estilo={{
+                            padding: '10px 20px',
+                            backgroundColor: '#f44336',
+                            color: 'white'
+                        }}
+                    />
+                </div>
             </form>
-      </div>
-    )
-}
+        </div>
+    );
+};
+
 export default Formulario;
-
-
-

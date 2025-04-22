@@ -1,10 +1,9 @@
-import { useState } from 'react'
-import Input from '../../Input/Input.jsx'
-import styles from '../tarjeton.module.css'
+const TituloCard = ({ titulo }) => {
+  return (
+      <h3 className="titulo-pelicula">
+          {titulo}
+      </h3>
+  );
+};
 
-
-const TituloCard = ({titulo, estado}) => {
-  const [tituloActual, setTituloActual] = useState(titulo)
-  return (<Input onChange={setTituloActual} value={tituloActual} lectura={estado!="edit"} estilo={`${estado!="edit" ? styles.inputEscondido : ""} ${styles.titulo}`} />)
-} 
-export default TituloCard
+export default TituloCard;

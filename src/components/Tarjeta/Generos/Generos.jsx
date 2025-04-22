@@ -1,24 +1,26 @@
-import { useState } from 'react';
-import styles from '../tarjeton.module.css'
+const Generos = ({ genero, modoEdicion, onChange }) => {
+  const generosDisponibles = [
+      "comedia", "accion", "aventura", "fantasia", "suspenso", "animacion"
+  ];
 
-var generos=["Terror", "Drama", "Fantasia", "Accion", "Romance", "Documental"]
-//esto lo podemos sacar de local si quieren
+  return (
+      <div className="generos-container">
+          {modoEdicion ? (
+              <select
+                  value={genero}
+                  onChange={(e) => onChange(e.target.value)}
+              >
+                  {generosDisponibles.map(g => (
+                      <option key={g} value={g}>
+                          {g.charAt(0).toUpperCase() + g.slice(1)} 
+                      </option>
+                  ))}
+              </select>
+          ) : (
+              <span>Género: {genero.charAt(0).toUpperCase() + genero.slice(1)}</span>
+          )}
+      </div>
+  );
+};
 
-
-const Generos = ({genero, estado}) => {
-    const [generoSeleccionado, setGeneroSeleccionado] = useState(genero)
-
-    const handleChange = (evento)=>{
-      setGeneroSeleccionado(evento.target.value)
-    }
-
-    return estado === "edit" ? 
-    <select onChange={handleChange} className={styles.generos} >
-    {generos.map((gender) => (//react llora si no le doy keys, pero no necesita en este caso CREO
-      <option value={gender}>{gender}</option>
-    ))}
-    </select>
-    : <p>Genero: {generoSeleccionado}</p>
-}
-
-export default Generos
+export default Generos;

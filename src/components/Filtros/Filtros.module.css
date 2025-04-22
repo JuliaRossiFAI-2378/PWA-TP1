@@ -1,0 +1,44 @@
+.filtrosContainer {
+    display: flex;
+    gap: 20px;
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  }
+  
+  .filtroGroup {
+    flex: 1;
+    min-width: 200px;
+  }
+  
+  .filtroGroup label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 600;
+    color: #333;
+  }
+  
+  .selectFiltro {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ced4da;
+    border-radius: 4px;
+    background-color: white;
+    font-size: 16px;
+    transition: border-color 0.15s ease-in-out;
+  }
+  
+  .selectFiltro:focus {
+    outline: none;
+    border-color: #6200ea;
+    box-shadow: 0 0 0 2px rgba(98, 0, 234, 0.2);
+  }
+  
+  @media (max-width: 768px) {
+    .filtrosContainer {
+      flex-direction: column;
+      gap: 15px;
+    }
+  }

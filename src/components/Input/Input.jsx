@@ -1,13 +1,21 @@
-import styles from './Input.module.css'
+import React from 'react';
 
-const Input  = ({onChange, value, estilo, lectura=false}) => {//tenemos un callback como parametro
+const Input = ({ value, onChange, type = 'text', ...props }) => {
+    return (
+        <input
+            type={type}
+            value={value}
+            onChange={(e) => onChange(e.target.value)}
+            style={{
+                width: '100%',
+                padding: '8px',
+                borderRadius: '4px',
+                border: '1px solid #ddd',
+                boxSizing: 'border-box'
+            }}
+            {...props}
+        />
+    );
+};
 
-    const handleChange = (evento) => {//campo de input siendo modificado
-        onChange(evento.target.value)
-    }
-
-    return <input className={estilo}//aca enviamos styles. y el nombre de la clase que queramos usar
-     value={value} readOnly={lectura} onChange={handleChange} />
-}
-
-export default Input
+export default Input;
