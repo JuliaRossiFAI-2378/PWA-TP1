@@ -11,7 +11,7 @@ const Filtros = ({ filtros, onFiltroChange }) => {
                 <label>Género:</label>
                 <select
                     value={filtros.genero}
-                    onChange={(e) => onFiltroChange('genero', e.target.value)}
+                    onChange={(event) => onFiltroChange('genero', event.target.value)}
                     className={styles.selectFiltro}
                 >
                     {generos.map(genero => (
@@ -26,7 +26,7 @@ const Filtros = ({ filtros, onFiltroChange }) => {
                 <label>Tipo:</label>
                 <select
                     value={filtros.tipo}
-                    onChange={(e) => onFiltroChange('tipo', e.target.value)}
+                    onChange={(event) => onFiltroChange('tipo', event.target.value)}
                     className={styles.selectFiltro}
                 >
                     {tipos.map(tipo => (

@@ -11,11 +11,7 @@ const Ordenamiento = ({ criterioOrden, setCriterioOrden, direccionOrden, setDire
     <div className={styles.ordenamientoContainer}>
       <div className={styles.ordenamientoGroup}>
         <label>Ordenar por:</label>
-        <select
-          value={criterioOrden}
-          onChange={(e) => setCriterioOrden(e.target.value)}
-          className={styles.selectOrden}
-        >
+        <select value={criterioOrden} onChange={(event) => setCriterioOrden(event.target.value)} className={styles.selectOrden}>
           <option value="none">Sin orden</option>
           <option value="anio">Año</option>
           <option value="rating">Rating</option>

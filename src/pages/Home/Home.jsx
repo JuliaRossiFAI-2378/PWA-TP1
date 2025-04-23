@@ -155,45 +155,14 @@ const Home = () => {
                     setCriterio={setCriterioBusqueda}
                 />
             </div>
-            
-            {}
-            <div style={{ 
-                display: 'flex', 
-                gap: '10px', 
-                marginBottom: '20px',
-                justifyContent: 'center'
-            }}>
-                <Boton 
-                    texto="Vistas" 
-                    onClick={() => setMostrarVistas(true)}
-                    estilo={mostrarVistas ? { 
-                        backgroundColor: '#6200ea', 
-                        color: 'white',
-                        padding: '10px 20px'
-                    } : {
-                        padding: '10px 20px'
-                    }}
-                />
-                <Boton 
-                    texto="Por Ver" 
-                    onClick={() => setMostrarVistas(false)}
-                    estilo={!mostrarVistas ? { 
-                        backgroundColor: '#6200ea', 
-                        color: 'white',
-                        padding: '10px 20px'
-                    } : {
-                        padding: '10px 20px'
-                    }}
-                />
+            <div >
+                <Boton texto="Vistas" onClick={() => setMostrarVistas(true)} />
+                <Boton texto="Por Ver" onClick={() => setMostrarVistas(false)} />
             </div>
-
-            {}
             <Filtros 
                 filtros={filtros}
                 onFiltroChange={handleFiltroChange}
             />
-
-            {}
             <Ordenamiento 
                 criterioOrden={criterioOrden}
                 setCriterioOrden={setCriterioOrden}
@@ -207,8 +176,6 @@ const Home = () => {
                 filtros={filtros}
                 
             />
-            
-            {}
             <div style={{
                 display: 'grid',
                 gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',

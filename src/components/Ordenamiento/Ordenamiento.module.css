@@ -14,14 +14,15 @@
   
   .ordenamientoGroup label {
     font-weight: 500;
-    color: #333;
+    color: white;
   }
   
   .selectOrden {
     padding: 8px 12px;
     border-radius: 4px;
     border: 1px solid #ddd;
-    background-color: white;
+    background-color: #1C1522;
+    color: white;
     cursor: pointer;
     min-width: 120px;
   }
