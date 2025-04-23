@@ -1,12 +1,11 @@
 .tarjeta {
-    position: relative;
     border: 2px solid #1C1522;;
-    border-radius: 8px;
+    border-radius: 10px;
     overflow: hidden;
     background-color: #1C1522;
     box-shadow: 0 0.2em 0.4em rgba(0,0,0,0.3);
     transition: transform 0.2s;
-    margin-bottom: 10px;
+    margin: 1em;
 }
 
 .tarjeta:hover {
@@ -31,7 +30,6 @@
     bottom: 0.3em;
     right: 0.3em;
     padding: 5px;
-    border-radius: 50%;
     cursor: pointer;
     transition: transform 0.2s;
 }
@@ -41,54 +39,54 @@
 }
 
 .iconoVista img {
+    border-radius: 50%;
     width: 2em;
     height: 2em;
 }
 
-.areaTitulo {
-    margin-bottom: 10px;
+.datosTarjeta {
+    align-items: left; 
+    justify-content: left;
+    text-align: left;
+    gap: 0.5em;
+    padding-left: 30%;
 }
+  
 
-.tituloPelicula {
+
+.tituloPelicula { /* titulo */
+    color: white;
+    font-size:1.5em;
     margin: 0;
-    color: white;
-    font-size: 1.2rem;
-}
-
-.cuerpoTexto {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.campo {
-    align-items: center;
-    gap: 10px;
-}
-
-.etiqueta {
     font-weight: bold;
-    min-width: 60px;
-    color: white;
+    max-width: 20em;
+    padding-left: 10%;
+    padding-right: 10%;
 }
 
-.valor {
-    flex: 1;
+.etiqueta { /* info */
+    font-weight: bold;
+    color: white;
+    white-space: nowrap;
 }
 
 .inputEdicion {
-    flex: 1;
-    padding: 8px;
-    border: 1px solid #ddd;
-    border-radius: 4px;
+    padding: 0.5em;
+    font-size: large;
+    border: 1px solid #2D5E5E;
+    border-radius: 5px;
 }
 
-.inputEscondido{
+.inputEscondido {/* alineamiento hell, hay espacios que NO SE BORRAN de la caja de input*/
     border: none;
     background-color: transparent;
     outline: none;
-    font-family: inherit;
-    font-size: inherit;
+}
+  
+
+
+.inputEscondido:hover{
+    cursor: auto;
 }
 
 .selectEdicion {
@@ -113,8 +111,25 @@
 .botones {
     display: flex;
     justify-content: space-between;
-    margin-top: 15px;
-    gap: 10px;
+    margin: 1em;
+}
+
+.primaryButton {
+    background-color: #6200ea;
+    color: white;
+    border: none;
+}
+
+.secondaryButton {
+    background-color: black;
+    color: white;
+    border: 1px solid #2D5E5E;
+}
+
+.tertiaryButton{
+    background-color: darkred;
+    color: white;
+    border: none;
 }
 
 

@@ -8,10 +8,7 @@ const Generos = ({ genero, modoEdicion, onChange}) => {
       <div className="generos-container">
           {modoEdicion ? (
             <><span className={styles.etiqueta} >Género: </span>
-              <select
-                  value={genero}
-                  onChange={onChange}
-              >
+              <select value={genero} onChange={onChange} className={styles.inputEdicion} >
                   {generosDisponibles.map(g => (
                       <option key={g} value={g}>
                           {g.charAt(0).toUpperCase() + g.slice(1)} 

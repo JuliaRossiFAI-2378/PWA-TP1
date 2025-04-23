@@ -2,7 +2,7 @@ import { useState } from 'react';
 import styles from './tarjeton.module.css';
 import Boton from '../Boton/Boton';
 import Imagen from './Imagenes/Imagenes.jsx';
-import Info from './InfoCard/Info.jsx';
+import Info from './Info/Info.jsx';
 import Tipo from './Tipo/Tipo.jsx'
 import Generos from './Generos/Generos.jsx'
 import TituloCard from './TituloCard/TituloCard.jsx';
@@ -79,9 +79,11 @@ const Tarjeta = ({ peliserie, onToggleVista, onEliminar, onGuardarEdicion, esVis
 
             <Confirmacion/>
 
-            <div>
-                <Imagen datos={peliserie.imagen} icono={obtenerImagenEstado()} onClickIcono={manejarClickVista} />
-                <TituloCard titulo={datosEditados.titulo} estadoCard={tipoCard} onChange={(evento) => handleChange('titulo', evento.target.value)} />
+            <Imagen datos={peliserie.imagen} icono={obtenerImagenEstado()} onClickIcono={manejarClickVista} />
+            
+            <TituloCard titulo={datosEditados.titulo} estadoCard={tipoCard} onChange={(evento) => handleChange('titulo', evento.target.value)} />
+            
+            <div className={styles.datosTarjeta} >
                 <Info datos={datosEditados.director} estadoCard={tipoCard} texto={"Director"} placeholder="Director" onChange={(evento) => handleChange('director', evento.target.value)} />
                 <Info datos={datosEditados.anio} estadoCard={tipoCard} texto={"Año"} placeholder="Año" onChange={(evento) => handleChange('anio', evento.target.value)} />
                 <Generos genero={datosEditados.genero} modoEdicion={tipoCard === "edit"} onChange={(evento) => handleChange('genero', evento.target.value)} />
@@ -94,13 +96,13 @@ const Tarjeta = ({ peliserie, onToggleVista, onEliminar, onGuardarEdicion, esVis
             <div className={styles.botones}>
                         {tipoCard === "edit" ? (
                             <>
-                                <Boton texto="Cancelar" onClick={HandleClickCancelar} />
-                                <Boton texto="Guardar" onClick={HandleClickGuardar} />
+                                <Boton texto="Cancelar" onClick={HandleClickCancelar} estilo={styles.secondaryButton} />
+                                <Boton texto="Guardar" onClick={HandleClickGuardar} estilo={styles.primaryButton} />
                             </>
                         ) : (
                             <>
-                                <Boton texto="Editar" onClick={HandleClickEditar} />
-                                <Boton texto="Eliminar" onClick={HandleClickEliminar} />
+                                <Boton texto="Editar" onClick={HandleClickEditar} estilo={styles.secondaryButton} />
+                                <Boton texto="Eliminar" onClick={HandleClickEliminar} estilo={styles.tertiaryButton} />
                             </>
                         )}
             </div>
