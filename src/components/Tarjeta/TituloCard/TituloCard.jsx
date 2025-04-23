@@ -1,9 +1,13 @@
-const TituloCard = ({ titulo }) => {
-  return (
-      <h3 className="titulo-pelicula">
-          {titulo}
-      </h3>
-  );
-};
+import styles from '../tarjeton.module.css'
+import Input from '../../Input/Input';
+
+const TituloCard = ({titulo, estadoCard, onChange}) => 
+  estadoCard==="edit" ?
+  <Input type="text" value={titulo} className={styles.inputEdicion} placeholder="Título" onChange={onChange} /> :    
+  <h3 className={styles.tituloPelicula}>
+    {titulo}
+  </h3>
+;
+
 
 export default TituloCard;

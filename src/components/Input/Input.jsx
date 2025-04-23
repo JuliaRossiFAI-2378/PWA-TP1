@@ -1,22 +1,11 @@
 import React from 'react';
 import Styles from './Input.module.css'
 
-const Input = ({ value, onChange, type = 'text', ...props }) => {
-    return (
-        <input
-            type={type}
-            value={value}
-            onChange={(e) => onChange(e.target.value)}
-            style={{
-                width: '100%',
-                padding: '8px',
-                borderRadius: '4px',
-                border: '1px solid #ddd',
-                boxSizing: 'border-box'
-            }}
-            {...props}
-        />
-    );
-};
+const Input  = ({onChange, estilo, lectura=false, ...props}) => {//tenemos un callback como parametro
+
+
+    return <input className={estilo}//aca enviamos styles. y el nombre de la clase que queramos usar
+     readOnly={lectura} onChange={onChange} {...props} />
+}
 
 export default Input;
