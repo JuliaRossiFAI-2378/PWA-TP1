@@ -135,14 +135,7 @@ const Home = () => {
             <Titulo titulo="TP1 PWA" />
             
             {/* Controles superiores */}
-            <div style={{ 
-                display: 'flex', 
-                justifyContent: 'space-between', 
-                alignItems: 'center', 
-                marginBottom: '20px',
-                flexWrap: 'wrap',
-                gap: '10px'
-            }}>
+            <div className={styles.opcionesTop}>
                 <Boton texto="Cargar Película/Serie" onClick={mostrarFormulario} estilo={styles.filtroBotonHome} />
                 
                 <Busqueda 
@@ -152,7 +145,7 @@ const Home = () => {
                     setCriterio={setCriterioBusqueda}
                 />
             </div>
-            <div >
+            <div className={styles.filtroContenedor}>
                 <Boton texto="Vistas" onClick={() => setMostrarVistas(true)} estilo={styles.filtroBotonHome} />
                 <Boton texto="Por Ver" onClick={() => setMostrarVistas(false)} estilo={styles.filtroBotonHome} />
             </div>

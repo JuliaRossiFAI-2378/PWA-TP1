@@ -59,6 +59,11 @@
     width: 20em;
 }
 
+.input:focus{
+    border: 2px solid #646cff;
+    outline: 1px solid #646cff;
+}
+
 .select{
     padding: 0.5em;
     font-size: large;

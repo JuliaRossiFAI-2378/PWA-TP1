@@ -81,6 +81,7 @@
     border: none;
     background-color: transparent;
     outline: none;
+    font-size: inherit;
 }
   
 
