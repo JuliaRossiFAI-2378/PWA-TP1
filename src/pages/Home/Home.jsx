@@ -7,6 +7,7 @@ import Busqueda from '../../components/Busqueda/Busqueda';
 import Contador from '../../components/Contador/Contador';
 import Filtros from '../../components/Filtros/Filtros';
 import Ordenamiento from '../../components/Ordenamiento/Ordenamiento';
+import styles from './Home.module.css';
 
 const Home = () => {
     const [pagina, setPagina] = useState("vistas");
@@ -142,11 +143,7 @@ const Home = () => {
                 flexWrap: 'wrap',
                 gap: '10px'
             }}>
-                <Boton 
-                    texto="Cargar Película/Serie" 
-                    onClick={mostrarFormulario}
-                    estilo={{ padding: '10px 20px', backgroundColor: '#6200ea', color: 'white' }}
-                />
+                <Boton texto="Cargar Película/Serie" onClick={mostrarFormulario} estilo={styles.filtroBotonHome} />
                 
                 <Busqueda 
                     terminoBusqueda={terminoBusqueda}
@@ -156,8 +153,8 @@ const Home = () => {
                 />
             </div>
             <div >
-                <Boton texto="Vistas" onClick={() => setMostrarVistas(true)} />
-                <Boton texto="Por Ver" onClick={() => setMostrarVistas(false)} />
+                <Boton texto="Vistas" onClick={() => setMostrarVistas(true)} estilo={styles.filtroBotonHome} />
+                <Boton texto="Por Ver" onClick={() => setMostrarVistas(false)} estilo={styles.filtroBotonHome} />
             </div>
             <Filtros 
                 filtros={filtros}
@@ -176,12 +173,7 @@ const Home = () => {
                 filtros={filtros}
                 
             />
-            <div style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-                gap: '20px',
-                padding: '10px'
-            }}>
+            
                 {peliculasFiltradasYOrdenadas.length > 0 ? 
                     peliculasFiltradasYOrdenadas.map((peli) => (
                         <Tarjeta 
@@ -193,16 +185,11 @@ const Home = () => {
                             esVista={peli.vista}
                         />
                     )) : 
-                    <div style={{
-                        gridColumn: '1 / -1',
-                        textAlign: 'center',
-                        padding: '40px',
-                        color: '#666'
-                    }}>
+                    <div>
                         <p>No se encontraron {mostrarVistas ? 'vistas' : 'por ver'} que coincidan con los filtros</p>
                     </div>
                 }
-            </div>
+            
         </div>
     );
 };

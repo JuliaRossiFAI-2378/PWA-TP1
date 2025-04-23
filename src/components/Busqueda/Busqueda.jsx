@@ -1,38 +1,21 @@
 import React from 'react';
-import './Busqueda.css';
-
+import styles from './Busqueda.module.css';
+import Input from '../Input/Input';
 const Busqueda = ({ terminoBusqueda, setTerminoBusqueda, criterio, setCriterio }) => {
     return (
-        <div style={{ width: '60%', maxWidth: '500px' }}>
-            <div style={{ display: 'flex', gap: '10px' }}>
-                <input
-                    type="text"
-                    placeholder="Podes buscar por título o director"
-                    value={terminoBusqueda}
-                    onChange={(e) => setTerminoBusqueda(e.target.value)}
-                    style={{
-                        padding: '8px 12px',
-                        flex: 1,
-                        borderRadius: '4px',
-                        border: '1px solid #ccc',
-                        fontSize: '16px'
-                    }}
-                />
-                <select
-                    value={criterio}
-                    onChange={(e) => setCriterio(e.target.value)}
-                    style={{
-                        padding: '8px 12px',
-                        borderRadius: '4px',
-                        border: '1px solid #ccc',
-                        cursor: 'pointer'
-                    }}
-                >
-                    <option value="ambos">Ambos</option>
-                    <option value="titulo">Título</option>
-                    <option value="director">Director</option>
-                </select>
-            </div>
+        <div className={styles.busquedaContainer}>
+            <Input
+                type="text"
+                placeholder="Ingrese título o director"
+                value={terminoBusqueda}
+                onChange={(event) => setTerminoBusqueda(event.target.value)}
+                estilo={styles.busquedaInput}
+            />
+            <select value={criterio} onChange={(event) => setCriterio(event.target.value)} className={styles.busquedaSelect}>
+                <option value="ambos">Ambos</option>
+                <option value="titulo">Título</option>
+                <option value="director">Director</option>
+            </select>
         </div>
     );
 };

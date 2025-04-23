@@ -1,0 +1,22 @@
+#main {
+    width: 100%;
+    height: 100%;
+}
+
+.contenido {
+    padding: '20px';
+    max-width: '1200px';
+    margin: '0 auto'
+}
+
+.filtroBotonHome{
+    border-radius: 8px;
+    border: 1px solid #2D5E5E;
+    font-size: 1em;
+    font-weight: 500;
+    font-family: inherit;
+    background-color: #1a1a1a;
+    cursor: pointer;
+    transition: border-color 0.25s;
+    margin: 5px;
+}
