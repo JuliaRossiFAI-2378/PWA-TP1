@@ -2,9 +2,9 @@
 
 ## Integrantes del grupo
 
-FAI-2378 Rossi Julia
-FAI-2948 Lores Federico
-FAI-5483 Millicay Lourdes Rocío
+FAI-2378 Rossi Julia <br/>
+FAI-2948 Lores Federico <br/>
+FAI-5483 Millicay Lourdes Rocío <br/>
 
 ## Instalacion
 
