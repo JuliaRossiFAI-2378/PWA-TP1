@@ -1,10 +1,16 @@
 # TP 1 - Grupo Piedra
 
+## Integrantes del grupo
+
+FAI-2378 Rossi Julia
+FAI-2948 Lores Federico
+FAI-5483 Millicay Lourdes Rocío
+
 ## Instalacion
 
 1.Clonar el repositorio<br>
-2.utilizar el comando "npm install -D vite"<br>
-3.listo para ejecutar<br>
+2.Utilizar el comando "npm install -D vite"<br>
+3.Listo para ejecutar<br>
 
 ## Demo
 
