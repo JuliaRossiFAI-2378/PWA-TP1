@@ -6,6 +6,14 @@ FAI-2378 Rossi Julia <br/>
 FAI-2948 Lores Federico <br/>
 FAI-5483 Millicay Lourdes Rocío <br/>
 
+## Descripción básica de la aplicación 
+
+La app es un gestor personal de peliculas/series (de aqui en mas referidas como peliseries) las cuales estan separadas por "vistas" y "por ver", uno puede subir las peliseries a la aplicación, editarlas y eliminarlas.<br/><br/>
+Otras funcionalidades: <br/>
+- Cambiar el estado de la peliserie (ej. de vista a por ver y viceversa)<br/>
+- Filtrar por título de la peliserie o del director <br/>
+- Ordenar las peliseries por año o rating (por default vienen sin orden) <br/>
+
 ## Instalacion
 
 1.Clonar el repositorio<br>
