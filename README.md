@@ -1,12 +1,17 @@
-# React + Vite
+# TP 1 - Grupo Piedra
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Instalacion
 
-Currently, two official plugins are available:
+1.Clonar el repositorio
+2.utilizar el comando "npm install -D vite"
+3.listo para ejecutar
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Demo
 
-## Expanding the ESLint configuration
+https://pwa-tp-1-seven.vercel.app/
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Teoria
+app.js es el componente principal de la app, contiene la estructura y la logica de la interfaz (toda la que no exista en componentes que app llama)
+index.js es el punto de entrada por defecto de la app, y es responsable de renderizar app.js
+index.css es una hoja de estilos global que aplica css a toda la app
+package-json.js define informacion de versiones y dependencias del proyecto
