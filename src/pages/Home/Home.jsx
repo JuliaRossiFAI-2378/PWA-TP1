@@ -39,7 +39,7 @@ const Home = () => {
             }
         };
         cargarPeliculas();
-    }, [pagina]);
+    }, [pagina]); //Creo que no es necesario que tengan pagina como dependencia de este useEffect
 
     // Función para ordenar 
     const ordenarPeliculas = (peliculas) => {
@@ -108,6 +108,7 @@ const Home = () => {
     };
 
     const handleGuardarEdicion = (datosEditados) => {
+        
         const nuevasPeliculas = peliculas.map(peli => 
             peli.id === datosEditados.id ? { 
                 ...datosEditados,

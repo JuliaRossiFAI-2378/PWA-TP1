@@ -1,3 +1,17 @@
+Correcciones:
+    - Persistencia con localStorage bien aplicada
+- Cobertura de funcionalidades requeridas: agregan, editan, eliminan, filtran por genero, tipo y busqueda, y ordenan por año y rating.
+- Manejo correcto de estado.
+
+Observaciones:
+- Repiten algunos css en distintos files. Si eso ocurre sospechen que algo esta mal. No deberia haber clases repetidas.
+- Hay files vacios, borrenlos antes de la entrega
+- Eviten hacer estructuras de carpetas de componentes anidados como tienen en Tarjeta y luego dentro un monton de carpetas mas. 
+- No importen css de modulos que no son del componente.
+- Utilicen prettier para poder dejar mas limpio el codigo.
+
+Nota: 9
+
 # TP 1 - Grupo Piedra
 
 ## Integrantes del grupo

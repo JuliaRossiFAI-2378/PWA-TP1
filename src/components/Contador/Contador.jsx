@@ -57,7 +57,8 @@ const Contador = ({
                     {mostrarVistas ? 'Contenido Visto' : 'Contenido por Ver'}
                     <span className={styles.total}>{estadisticas.total}</span>
                 </h3>
-                {}
+                {/* borrar la siguiente linea */}
+                {} 
             </div>
             
             <div className={styles.resumen}>
