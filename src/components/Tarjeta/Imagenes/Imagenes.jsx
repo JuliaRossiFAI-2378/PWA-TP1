@@ -1,4 +1,4 @@
-import styles from '../tarjeton.module.css'
+import styles from '../tarjeton.module.css' //No importar de otro module
 
 
 

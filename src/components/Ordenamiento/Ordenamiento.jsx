@@ -18,6 +18,7 @@ const Ordenamiento = ({ criterioOrden, setCriterioOrden, direccionOrden, setDire
         </select>
       </div>
 
+{/* aca podrian haber usado su componente de boton */}
       {criterioOrden !== 'none' && (
         <button 
           onClick={toggleDireccion}

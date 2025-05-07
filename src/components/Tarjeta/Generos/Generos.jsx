@@ -1,4 +1,4 @@
-import styles from '../tarjeton.module.css'
+import styles from '../tarjeton.module.css' // Esto no es una buena practica. Cada modulo es para cada archivo de componente
 
 const generosDisponibles = ["terror", "drama", "fantasia", "accion", "romance", "documental"];
 

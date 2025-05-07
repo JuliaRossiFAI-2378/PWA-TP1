@@ -7,6 +7,7 @@ import Tipo from './Tipo/Tipo.jsx'
 import Generos from './Generos/Generos.jsx'
 import TituloCard from './TituloCard/TituloCard.jsx';
 
+// El nombre del archivo debe ser siempre igual al nombre del componente que esta renderizando este archivo
 const Tarjeta = ({ peliserie, onToggleVista, onEliminar, onGuardarEdicion, esVista }) => {
     const [tipoCard, setTipoCard] = useState("view");
     const [iconoEstado, setIconoEstado] = useState(esVista ? "vista" : "no-vista");

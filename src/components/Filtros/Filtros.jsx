@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Filtros.module.css';
 
 const Filtros = ({ filtros, onFiltroChange }) => {
+    // estas dos contantes pueden ir en la linea 3, por fuera del componente.
     const generos = ["Todos", "terror", "drama", "fantasia", "accion", "romance", "documental"]; 
     const tipos = ["Todos", "pelicula", "serie"];
 
